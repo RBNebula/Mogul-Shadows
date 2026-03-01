@@ -1,4 +1,4 @@
-# Mogul Shadows+
+# Mogul Shadows
 
 A BepInEx 5 mod for MineMogul that does one thing only:
 
