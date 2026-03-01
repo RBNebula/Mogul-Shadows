@@ -48,9 +48,7 @@ public sealed class MogulShadowsPlugin : BaseUnityPlugin
 
     private void ApplyShadowsToAllLights(string reason)
     {
-        Scene activeScene = SceneManager.GetActiveScene();
-        if (activeScene.IsValid() &&
-            activeScene.name.Equals(IgnoredSceneName, StringComparison.OrdinalIgnoreCase))
+        if (IsIgnoredSceneActive())
         {
             return;
         }
@@ -95,5 +93,12 @@ public sealed class MogulShadowsPlugin : BaseUnityPlugin
         {
             Logger.LogInfo($"Applied shadows to {changed} lights ({reason}).");
         }
+    }
+
+    private static bool IsIgnoredSceneActive()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return activeScene.IsValid() &&
+               activeScene.name.Equals(IgnoredSceneName, StringComparison.OrdinalIgnoreCase);
     }
 }

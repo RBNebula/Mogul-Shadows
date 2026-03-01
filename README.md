@@ -8,7 +8,7 @@ A BepInEx 5 mod for MineMogul that does one thing only:
 
 - Runs once on plugin load.
 - Runs again on scene load.
-- Runs periodically every `0.5` seconds to catch newly spawned/placed objects (for example, placed lamps/lamp posts that create lights after placement).
+- Runs periodically every `0.5` seconds to catch newly spawned/placed objects.
 - Skips `MainMenu`.
 
 ## Scope

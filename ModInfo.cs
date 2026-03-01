@@ -2,7 +2,7 @@ namespace MogulShadows;
 
 internal static class ModInfo
 {
-    public const string PLUGIN_GUID = "mogulshadows";
-    public const string PLUGIN_NAME = "Mogul Shadows+";
+    public const string PLUGIN_GUID = "com.mogulshadows";
+    public const string PLUGIN_NAME = "Mogul Shadows";
     public const string PLUGIN_VERSION = "1.0.0";
 }
