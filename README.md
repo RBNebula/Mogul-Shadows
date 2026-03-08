@@ -1,32 +1,28 @@
-# Mogul Shadows
+MOGUL SHADOWS - 1.1.0
+Forces scene lights to cast shadows in MineMogul.
 
-A BepInEx 5 mod for MineMogul that does one thing only:
+:: REQUIREMENTS ::
+- MineMogul (up to date)
+- BepInEx 5
 
-- Forces all scene `Light` components to cast shadows.
+:: FEATURES ::
+- Runs multiple shadow-application passes after scene load
+- Handles spawned/instantiated objects by scanning their light hierarchies
+- Skips `MainMenu` scene
+- Targets `Light` components only
 
-## Behavior
+:: INSTALL ::
+1. Copy `mogulshadows.dll` to:
+   `MineMogul\BepInEx\plugins\`
+2. (Optional) Copy `mogulshadows.pdb` for symbol-backed logs.
 
-- Runs in a few short passes after each scene load.
-- Applies to spawned/placed objects by scanning newly instantiated hierarchies.
-- Skips `MainMenu`.
-
-## Scope
-
-- Targets `Light` components only.
-- This mod does not change emissive materials directly.
-
-## Build
-
+:: BUILD ::
 ```powershell
 dotnet build -c Release
 ```
 
-Output:
+:: KNOWN ISSUES ::
+- None currently known.
 
-`bin\Release\net472\mogulshadows.dll`
-
-## Deploy
-
-Copy to:
-
-`<MineMogul>\BepInEx\plugins\`
+:: CREDITS ::
+- Made by RBN

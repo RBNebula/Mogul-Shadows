@@ -14,6 +14,8 @@ internal static class InstantiatePatch
         return typeof(Object)
             .GetMethods(BindingFlags.Public | BindingFlags.Static)
             .Where(method => method.Name == nameof(Object.Instantiate) &&
+                             !method.IsGenericMethodDefinition &&
+                             !method.ContainsGenericParameters &&
                              method.ReturnType != typeof(void));
     }
 

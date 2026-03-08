@@ -20,15 +20,27 @@ public sealed class MogulShadowsPlugin : BaseUnityPlugin
     private void Awake()
     {
         Instance = this;
-        _harmony = new Harmony(ModInfo.PLUGIN_GUID);
+        _harmony = new Harmony(ModInfo.HARMONY_ID);
         _harmony.PatchAll();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Logger.LogInfo($"{ModInfo.LOG_PREFIX} {ModInfo.PLUGIN_NAME} {ModInfo.PLUGIN_VERSION} loaded.");
     }
 
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        _harmony?.UnpatchSelf();
+        if (_harmony != null)
+        {
+            try
+            {
+                _harmony.UnpatchSelf();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogWarning($"{ModInfo.LOG_PREFIX} Failed to unpatch harmony hooks cleanly: {ex.Message}");
+            }
+        }
+
         _harmony = null;
 
         if (_sceneLoadRoutine != null)
@@ -120,7 +132,7 @@ public sealed class MogulShadowsPlugin : BaseUnityPlugin
 
         if (changed > 0)
         {
-            Logger.LogInfo($"Applied shadows to {changed} lights ({reason}).");
+            Logger.LogInfo($"{ModInfo.LOG_PREFIX} Applied shadows to {changed} lights ({reason}).");
         }
     }
 
@@ -156,7 +168,7 @@ public sealed class MogulShadowsPlugin : BaseUnityPlugin
 
         if (changed > 0)
         {
-            Logger.LogInfo($"Applied shadows to {changed} lights ({reason}).");
+            Logger.LogInfo($"{ModInfo.LOG_PREFIX} Applied shadows to {changed} lights ({reason}).");
         }
     }
 
